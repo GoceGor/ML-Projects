@@ -80,7 +80,7 @@ def on_epoch_end(epoch, _):
     start_index = random.randint(0, len(jokes)-1)
     #start_index = random.randint(0, len(text) - maxlen - 1)
     maxxlen = len(jokes[start_index])-1
-    newlen = random.randint(0, int(maxxlen/2))
+    newlen = random.randint(5, int(maxxlen/2))
     for diversity in [0.2, 0.5, 1.0, 1.2]:
         print('----- diversity:', diversity)
 

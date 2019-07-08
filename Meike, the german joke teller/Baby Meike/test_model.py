@@ -8,8 +8,8 @@ from keras.models import Sequential, load_model
 #######################################################
 # Configuration:
 NUM_OF_JOKES = 5
-MODEL_NUMBER = 10
-MAX_JOKE_LENGTH = 200 
+MODEL_NUMBER = 49
+MAX_JOKE_LENGTH = 250 
 #######################################################
 
 # Making the corpus:
@@ -40,7 +40,13 @@ def fetch():
    global statusvar
    statusvar.set("Generating amazing jokes...")
    root.update_idletasks()
-   jokestart = entry_joke.get() + " "
+   jokestart = entry_joke.get()
+   if len(jokestart) == 0:
+      statusvar.set("Meike cannot finish an empty start of a joke... Try again!")
+      root.update_idletasks()
+      return 0
+   if jokestart[len(jokestart) - 1] != " ":
+      jokestart += " "
 
    global chkbtns
    global all_jokes
@@ -56,7 +62,7 @@ def fetch():
          generated = ''
          sentence = jokestart
          generated += sentence
-         sys.stdout.write(generated)
+         #sys.stdout.write(generated)
 
          for i in range(MAX_JOKE_LENGTH - len(jokestart)):
             x_pred = np.zeros((1, len(sentence), len(chars)))  
@@ -130,7 +136,7 @@ entry_joke = Entry(top_left)
 top_right_label = Label(top_right, text="Top Right")
 label_slider = Label(top_right, text = "Enter the level of creativity you desire!")
 label_slider.config(font=("Courier", 20))
-slider = Scale(top_right, orient = 'horizontal', from_ = 0.0, to = 1.5, resolution = 0.05)
+slider = Scale(top_right, orient = 'horizontal', from_ = 0.05, to = 1.5, resolution = 0.05)
 
 button_generate = Button(top_left, text = "Generate!",bg='brown',fg='white', command=fetch)
 button_generate.config(font=("Courier", 20))
