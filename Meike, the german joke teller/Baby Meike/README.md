@@ -43,9 +43,11 @@ First step is to check whether all the dependencies are installed:
 
 2. gTTS
 
-3. Tkinter
+3. pygame
 
-4. Numpy
+4. Tkinter
+
+5. Numpy
 
 If that is the case, run the *test_model.py* script. A window will open. In the upper-left part of the screen, you can input the start of the joke. One more parameter worth noting is the creativity parameter, In general, the higher the creativity, the more likely the model is to make creative jokes, but also, more likely to come up with words that have no meaning in english (and very likely in any other language). 
 
